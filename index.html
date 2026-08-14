@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>命理起卦工作台</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+  <aside class="sidebar">
+    <h2>命理工作台</h2>
+    <nav>
+      <button class="nav-btn" data-target="tab-gua">起卦</button>
+      <button class="nav-btn" data-target="tab-record">卦例存档</button>
+      <button class="nav-btn" data-target="tab-about">说明</button>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <!-- 起卦面板 -->
+    <section id="tab-gua" class="panel active">
+      <div class="tab-buttons">
+        <button class="mode-btn" data-mode="liuyao">六爻铜钱卦</button>
+        <button class="mode-btn active" data-mode="meihua-num">梅花易数·数字</button>
+        <button class="mode-btn" data-mode="meihua-time">梅花易数·时间</button>
+      </div>
+
+      <!-- 梅花数字起卦 -->
+      <div class="mode-panel" id="panel-meihua-num">
+        <p>输入三个数字，对应：上卦数、下卦数、动爻数</p>
+        <div class="input-row">
+          <div class="input-item">
+            <label>上卦数</label>
+            <input type="number" id="num-up" min="1" value="3">
+          </div>
+          <div class="input-item">
+            <label>下卦数</label>
+            <input type="number" id="num-down" min="1" value="7">
+          </div>
+          <div class="input-item">
+            <label>动爻数</label>
+            <input type="number" id="num-dong" min="1" value="2">
+          </div>
+        </div>
+        <button class="primary-btn" id="btn-meihua-num">起卦</button>
+      </div>
+
+      <!-- 梅花时间起卦 -->
+      <div class="mode-panel hidden" id="panel-meihua-time">
+        <p>以当前时间起卦（年月日时）</p>
+        <div class="time-info">
+          <p>公历：<span id="show-greg"></span></p>
+          <p>农历：<span id="show-lunar"></span></p>
+        </div>
+        <button class="primary-btn" id="btn-meihua-time">以此时起卦</button>
+      </div>
+
+      <!-- 六爻铜钱卦 -->
+      <div class="mode-panel hidden" id="panel-liuyao">
+        <p>连续点击六次，记录铜钱摇卦结果</p>
+        <div id="coin-list"></div>
+        <button class="primary-btn" id="btn-coin-shake">摇一次铜钱</button>
+        <button class="reset-btn" id="btn-coin-reset">重置铜钱</button>
+      </div>
+
+      <!-- 卦盘输出区域 -->
+      <div class="result-box">
+        <h3>卦象结果</h3>
+        <pre id="result-text">等待起卦……</pre>
+        <div class="btn-row">
+          <button class="save-btn" id="btn-save-record">保存本条卦例</button>
+          <button class="copy-btn" id="btn-copy-text">复制文本</button>
+        </div>
+        <textarea placeholder="占问事项（可选，存档时填写）" id="query-text"></textarea>
+      </div>
+    </section>
+
+    <!-- 卦例存档面板 -->
+    <section id="tab-record" class="panel hidden">
+      <h3>本地卦例存档</h3>
+      <div id="record-list"></div>
+      <button class="reset-btn" id="btn-clear-all">清空全部记录</button>
+    </section>
+
+    <!-- 说明面板 -->
+    <section id="tab-about" class="panel hidden">
+      <h3>使用说明</h3>
+      <ul>
+        <li>数据保存在浏览器本地 LocalStorage，清除浏览器数据会丢失记录</li>
+        <li>梅花数字起卦：随意报三个数字起卦</li>
+        <li>梅花时间起卦：自动读取当前时间换算</li>
+        <li>六爻铜钱：依次摇六次生成纳甲六爻卦</li>
+        <li>免责：仅为传统民俗文化研习工具，不构成决策建议</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/gua.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
